@@ -1,1 +1,1 @@
-/home/geumbo/Documents/ProgramProject/rustProgram/PassworldCrack/target/debug/PassworldCrack: /home/geumbo/Documents/ProgramProject/rustProgram/PassworldCrack/src/main.rs
+/home/geumbo/Documents/MyProgramProject/PassworldCrack/target/debug/PassworldCrack: /home/geumbo/Documents/MyProgramProject/PassworldCrack/src/main.rs

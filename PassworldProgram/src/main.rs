@@ -4,6 +4,7 @@ use std::fs;
 use std::env;
 use crypto::sha2::Sha256;
 use crypto::digest::Digest;
+use serde::__private::de::Content;
 
 fn hash_encryt(hash_value: String) -> String
 {
@@ -14,14 +15,22 @@ fn hash_encryt(hash_value: String) -> String
 }
 fn passphrase() -> String
 { 
+    let current_dir = env::current_dir().unwrap();
+    let path = current_dir.join("passworld.txt");
     loop{
-        let content = fs::read_to_string("/home/geumbo/Documents/ProgramProject/rustProgram/PassworldProgram/passworld.txt").expect("Failed to Read File!");
-        match content{
-            Ok() => break;
-            Err() => 
+        let content = fs::read_to_string(path);
+        match content {
+            Ok();
+            Err() => write_file("passworld", "d2b99f358788d2b8f2ec4a180ca951252806708f2139a9693d52ff14cc32d1fe");
         }
         return content;
     }
+}
+
+fn write_file(fileName: String, Contents: String) -> String
+{
+    let current_dir = env::current_dir().unwrap();
+    fs::write(current_dir.join(fileName), Contents);
 }
 fn _func()
 {
