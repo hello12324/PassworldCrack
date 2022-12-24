@@ -1,8 +1,8 @@
 [中文文档](./README_CN.md)
-#Explanation
+# Explanation
   - This is my practice project for learning the rust language. Although the writing is not very good, I will work hard!.
 
-#My project
+# My project
   - ANN(Artificial Neural Network) ----status (not executable, in progress)
   	Here is my simple artificial neural network, which is just a prototype and cannot be implemented
   
