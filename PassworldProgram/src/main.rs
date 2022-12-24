@@ -5,6 +5,7 @@ use std::env;
 use crypto::sha2::Sha256;
 use crypto::digest::Digest;
 use serde::__private::de::Content;
+use std::io::ErrorKind;
 
 fn hash_encryt(hash_value: String) -> String
 {
@@ -20,10 +21,17 @@ fn passphrase() -> String
     loop{
         let content = fs::read_to_string(path);
         match content {
-            Ok();
-            Err() => write_file("passworld", "d2b99f358788d2b8f2ec4a180ca951252806708f2139a9693d52ff14cc32d1fe");
+            Ok(t) => {
+                Ok(t)
+            }
+            Err(a) => {
+                if a.kind() == ErrorKind::NotFound{
+                    write_file("passworld", "d2b99f358788d2b8f2ec4a180ca951252806708f2139a9693d52ff14cc32d1fe")
+                }else {
+                    Err(a)
+                }
+            }
         }
-        return content;
     }
 }
 
