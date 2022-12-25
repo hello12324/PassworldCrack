@@ -16,7 +16,10 @@ use crypto::{
     sha2::Sha256,
     digest::Digest
 };
-
+use base64::{
+    encode,
+    decode
+};
 //内部的代码可能稍微有点不是很人性化:).
 
 
@@ -838,13 +841,7 @@ fn _func(time_Sleep: u64, FNP: String, count_1: i32)
 }
 
 fn main() {
-    println!("
-     _____________
-    |Passw0rld    |
-    | \x1b[32m:(\x1b[0mCrack  \x1b[41m:)\x1b[0m |
-     -------------
-            make by geumbo
-    ");
+    println!("{}", String::from_utf8(decode("CiAgICBfX19fX19fX19fX18KICAgfFBhc3N3MHJsZCAbWzQxbTopG1swbXwKICAgfCAgG1szMm06KBtbMG0gIENyYWNrIHwKICAgIC0tLS0tLS0tLS0tLQogICAgICAgIBtbMzFtTWVycnkbWzBtIBtbMzJtQ2hyaXN0bWFzIRtbMG0KICAgICAgICAgICAgbWFrZSBieSBnZXVtYm8K").unwrap()).unwrap());
     println!("[\x1b[32m:)\x1b[0m] Are You Sure continue?(Yes or No Default:Y)[是否继续 默认继续]");
     let mut input = String::new();
     io::stdin().read_line(&mut input).expect("[\x1b[41m:(\x1b[0m]failed");
