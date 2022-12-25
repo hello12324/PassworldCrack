@@ -1,9 +1,11 @@
 # 解释
  > 这是我练习的项目,用于学习rust语言的,虽然写的不怎么好,但是我会努力的!.
  > 如果你觉得我的代码有问题请
- 	## My email
+ 	 My email
 		testsendkfotesycike@gmail.com
    到我的邮箱交流!
+
+ > PassworldCarck 实际上我是想把这个功能实现在arduino编程板上面(利用HID漏洞(Human Interface Device)),因为编程板上面不可以填入超级多的字节所以我想实现自动实时生成密码的项目,现在已经实现了,使用rust语言,稍后我会利用在arduino上面实现,并公开代码到这个仓库.
 
 # 我的项目
  ## ANN(Artificial Neural Network) ----状态(不可执行, 进行中)

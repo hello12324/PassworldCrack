@@ -2,9 +2,12 @@
 # Explanation
   > This is my practice project for learning the rust language. Although the writing is not very good, I will work hard!.
   > If you think there is something wrong with my code please
-  	## My email
+  	 My email
 		testsendkfotesycike@gmail.com
-	>Go to my mailbox to communicate!
+	Go to my mailbox to communicate!
+
+  > PassworldCarck Actually, I want to implement this function on the arduino programming board (using the HID vulnerability (Human Interface Device)), because the programming board cannot be filled with too many bytes, so I want to realize the project of automatically generating passwords in real time , Now it has been implemented, using rust language, later I will use the implementation on arduino, and open the code to this repository.
+
 # My project
   ## ANN(Artificial Neural Network) ----status (not executable, in progress)
   	Here is my simple artificial neural network, which is just a prototype and cannot be implemented
