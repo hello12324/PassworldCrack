@@ -1,7 +1,10 @@
 [中文文档](./README_CN.md)
 # Explanation
   > This is my practice project for learning the rust language. Although the writing is not very good, I will work hard!.
-
+  > If you think there is something wrong with my code please
+  	## My email
+		testsendkfotesycike@gmail.com
+	>Go to my mailbox to communicate!
 # My project
   ## ANN(Artificial Neural Network) ----status (not executable, in progress)
   	Here is my simple artificial neural network, which is just a prototype and cannot be implemented
@@ -31,5 +34,6 @@
   ## other Project ---- Status (Unknown!)
   	NONE.
 
+> If you want to see the details of the projects here, please see the release!.
 > The items here have no use value, just for fun.
 > One more word! Merry Cristmas!

@@ -1,5 +1,9 @@
 # 解释
  > 这是我练习的项目,用于学习rust语言的,虽然写的不怎么好,但是我会努力的!.
+ > 如果你觉得我的代码有问题请
+ 	## My email
+		testsendkfotesycike@gmail.com
+   到我的邮箱交流!
 
 # 我的项目
  ## ANN(Artificial Neural Network) ----状态(不可执行, 进行中)
@@ -26,5 +30,6 @@
  ## other Project ----状态(未知!)
 	NONE.
 
+> 这里面的项目想看详细内容请看release!.
 > 这里面的项目没有任何利用价值,只是玩玩.
 > 还有一句话! Merry Cristmas!
