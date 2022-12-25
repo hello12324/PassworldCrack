@@ -1,3 +1,10 @@
+/*
+说明
+    这个程序并没有任何的利用价值,只是瞎写玩玩的, 我公开也只是为了...,所以不要喷我.
+    这个程序的功能就是不使用已生成好的字典去使用密码,而是自动检举字符去实时生成密码,虽然这个想法目前还是有问题的.
+            make by geumbo
+*/
+
 use std::fs::{read_to_string};
 use rand::{thread_rng, Rng};
 use std::{
@@ -7,6 +14,7 @@ use std::{
     fs,
     io,
     env,
+    env::args,
     io::ErrorKind,
     time::{
         Instant
@@ -22,7 +30,7 @@ use base64::{
 };
 //内部的代码可能稍微有点不是很人性化:).
 
-
+// hash加密,之后用于hash的密码解密.
 fn hash_encryt(hash_value: String) -> String
 {
     let mut hasher = Sha256::new();
@@ -30,6 +38,8 @@ fn hash_encryt(hash_value: String) -> String
     hasher.input_str(&_content);
     return hasher.result_str()
 }
+
+//输出的规格,用于测试密码的输出和规格.
 fn output_style(_passworld: String, _time_sleep: Duration)
 {
     
@@ -46,6 +56,8 @@ fn output_style(_passworld: String, _time_sleep: Duration)
     }
     
 }
+
+//这个只是测试函数,只是测试密码的破解速度.
 fn passworldTEST(pasphrase: String, Enum: String) -> bool
 {
     let mut pass = 0;
@@ -62,12 +74,16 @@ fn passworldTEST(pasphrase: String, Enum: String) -> bool
         return false;
     }
 } 
+
+//生成密码的字典,但是因为现在的密码生成有问题所以之后会添加是使用这个函数,或者用这个函数进行缓存加速密码破解或效率.
 fn _file(contents: String)
 {
     let current_dir = env::current_dir().unwrap();
     fs::write(current_dir.join("Passworldenum.txt"), contents);
 
 }
+
+//读取文件,如果用户自定义了自己的字符文件就可以使用这个函数去调用.
 fn read_file(FP: String) -> Result<String, std::io::Error> 
 {
     let current_dir_1 = env::current_dir().unwrap();
@@ -842,46 +858,66 @@ fn _func(time_Sleep: u64, FNP: String, count_1: i32)
 
 fn main() {
     println!("{}", String::from_utf8(decode("CiAgICBfX19fX19fX19fX18KICAgfFBhc3N3MHJsZCAbWzQxbTopG1swbXwKICAgfCAgG1szMm06KBtbMG0gIENyYWNrIHwKICAgIC0tLS0tLS0tLS0tLQogICAgICAgIBtbMzFtTWVycnkbWzBtIBtbMzJtQ2hyaXN0bWFzIRtbMG0KICAgICAgICAgICAgbWFrZSBieSBnZXVtYm8K").unwrap()).unwrap());
-    println!("[\x1b[32m:)\x1b[0m] Are You Sure continue?(Yes or No Default:Y)[是否继续 默认继续]");
-    let mut input = String::new();
-    io::stdin().read_line(&mut input).expect("[\x1b[41m:(\x1b[0m]failed");
-    if input.trim() == "" || input.trim() == "Y"
-    {
-    println!("[\x1b[32m:)\x1b[0m] Passworld length(Default is 20)[密码的长度 默认20]");
-    let mut count_2 = String::new();
-    io::stdin().read_line(&mut count_2).expect("[\x1b[41m:(\x1b[0m]Failed");
-    let num_2: Result<i64, _> = count_2.trim().parse();
-    let num_2_p = num_2.unwrap_or(-1);
-    println!("[\x1b[32m:)\x1b[0m] Delay(default 400)[延迟, 默认为400ms]");
-    let mut time_ = String::new();
-    io::stdin().read_line(&mut time_).expect("[\x1b[41m:(\x1b[0m]Failed");
-    let num: Result<i64, _> = time_.trim().parse();
-    let num_ = num.unwrap_or(-1);
-    println!("[\x1b[32m:)\x1b[0m] custom file[自定义文件]");
-    let mut FNP_C = String::new();
-    io::stdin().read_line(&mut FNP_C).expect("[\x1b[41m:(\x1b[0m]FAILED");
-    //println!("{}",FNP_C);
-        if num_ == -1 {
-            if num_2_p == -1{
-                _func(0,FNP_C,20);
+    let args: Vec<String> = args().collect();
+    let mut Args_FP = "".to_string();
+    let mut Args_Delay = 0;
+    let mut Args_Length = 0;
+    if args.len() == 1 {
+        println!("{}", String::from_utf8(decode("ChtbMzNtKHRpcHMhKRtbMG0gVGhpcyBwcm9ncmFtIGhhcyBhIHBhcmFtZXRlciBtb2RlIHRoYXQgY2FuIGJlIHVzZWQsIGp1c3QgZW50ZXIgdGhlIHBhcmFtZXRlcnMgaW4gdGhlIHRlcm1pbmFsIQogICAgVXNhZ2U6CiAgICAgICAgW1Byb2dyYW0gZmlsZV0gW2FyZ3NdCiAgICAgICAgG1szM20odGlwcyEpG1swbSBQbGVhc2UgZW50ZXIgdGhlIGhlbHAgY29tbWFuZCB0byBnZXQgbW9yZSBpbnN0cnVjdGlvbnMhCgogICAg").unwrap()).unwrap());
+        println!("[\x1b[32m:)\x1b[0m] Are You Sure continue?(Yes or No Default:Y)[是否继续 默认继续]");
+        print!("()");
+        let mut input = String::new();
+        io::stdin().read_line(&mut input).expect("[\x1b[41m:(\x1b[0m]failed");
+        if input.trim() == "" || input.trim() == "Y"
+        {
+        println!("[\x1b[32m:)\x1b[0m] Passworld length(Default is 20)[密码的长度 默认20]");
+        let mut count_2 = String::new();
+        io::stdin().read_line(&mut count_2).expect("[\x1b[41m:(\x1b[0m]Failed");
+        let num_2: Result<i64, _> = count_2.trim().parse();
+        let num_2_p = num_2.unwrap_or(-1);
+        println!("[\x1b[32m:)\x1b[0m] Delay(default 400)[延迟, 默认为400ms]");
+        let mut time_ = String::new();
+        io::stdin().read_line(&mut time_).expect("[\x1b[41m:(\x1b[0m]Failed");
+        let num: Result<i64, _> = time_.trim().parse();
+        let num_ = num.unwrap_or(-1);
+        println!("[\x1b[32m:)\x1b[0m] custom file[自定义文件]");
+        let mut FNP_C = String::new();
+        io::stdin().read_line(&mut FNP_C).expect("[\x1b[41m:(\x1b[0m]FAILED");
+        //println!("{}",FNP_C);
+            if num_ == -1 {
+                if num_2_p == -1{
+                    _func(0,FNP_C,20);
+                }else{
+                    _func(0,FNP_C,num_2_p.try_into().unwrap());
+                }
             }else{
-                _func(0,FNP_C,num_2_p.try_into().unwrap());
-            }
-        }else{
-            if num_2_p == -1{
-                _func(num_.try_into().unwrap(),FNP_C,20);
-            }else{
-                _func(num_.try_into().unwrap(),FNP_C,num_2_p.try_into().unwrap());
+                if num_2_p == -1{
+                    _func(num_.try_into().unwrap(),FNP_C,20);
+                }else{
+                    _func(num_.try_into().unwrap(),FNP_C,num_2_p.try_into().unwrap());
+                }
             }
         }
-    }
-    else if input.trim() == "N"
-    {
-        return;
-    }
-    else
-    {
-        return;
+        else if input.trim() == "N"
+        {
+            return;
+        }
+        else
+        {
+            return;
 
+        }
+ }else if args.len() > 1{
+    for (i, arg) in args.iter().enumerate() 
+    {
+        if arg == &"--help"||arg == &"h"
+        {
+            println!("{}", String::from_utf8(decode("").unwrap()).unwrap());
+        }
+        if arg == &"--test"||arg == &"t"
+        {
+            println!("{:?}", args[i+1].clone());
+        }
     }
+ }
 }
