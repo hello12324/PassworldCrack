@@ -25,26 +25,26 @@
 #define CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_-+~`|\{}[]:;'<,>.?/"
 #define CHARS_1 '"'
 
-void _STRCAT(char *dest, const char *src)
-{
-    char str1[100] = src;
-    char str2[100] = dest;
-    char str3[200];
-    for (i = 0; str1[i] != '\0'; ++i)
-    {
-        str3[i] = str1[i];
-    }
-    for (j = 0; str2[j] != '\0'; ++j)
-    {
-        str3[i + j] = str2[j];
-    }
-    str3[i + j] = '\0';
-    return str3;
-}
+//void _STRCAT(char *dest, const char *src)
+//{
+//    char str1[100] = src;
+//    char str2[100] = dest;
+//    char str3[200];
+//    for (i = 0; str1[i] != '\0'; ++i)
+//    {
+//        str3[i] = str1[i];
+//    }
+//    for (j = 0; str2[j] != '\0'; ++j)
+//    {
+//        str3[i + j] = str2[j];
+//    }
+//    str3[i + j] = '\0';
+//    return str3;
+//}
 
 int main() {
-char *strings = _STRCAT(CHARS, CHARS_1);
-size_t len = strlen(strings);
+//char *strings = _STRCAT(CHARS, CHARS_1);
+size_t len = strlen(CHARS);
 for (int i = 1; i <= 5; i++) {
     for (int j = 0; j < len; j++) {
         printf("%c\n", CHARS[j]);

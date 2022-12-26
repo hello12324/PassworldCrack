@@ -903,7 +903,6 @@ fn _func(time_Sleep: u64, FNP: String, count_1: i32, _PASSWORLD_1: String)
 //程序执行函数Main
 fn main() {
     println!("{}", String::from_utf8(decode("CiAgICBfX19fX19fX19fX18KICAgfFBhc3N3MHJsZCAbWzQxbTopG1swbXwKICAgfCAgG1szMm06KBtbMG0gIENyYWNrIHwKICAgIC0tLS0tLS0tLS0tLQogICAgICAgIBtbMzFtTWVycnkbWzBtIBtbMzJtQ2hyaXN0bWFzIRtbMG0KICAgICAgICAgICAgbWFrZSBieSBnZXVtYm8K").unwrap()).unwrap());
-    loop{
         let args: Vec<String> = args().collect();
         let mut Args_FP = "".to_string();
         let mut Args_Delay = 0;
@@ -965,6 +964,7 @@ fn main() {
             if arg == &"--help"||arg == &"h"
             {
                 println!("{}", String::from_utf8(decode("CiAgICBVc2FnZToKICAgICAgICAtLXZlcnNpb24gICAgICAgICAgICAgICAgIERvIHlvdSB3YW50IHRvIHNlZSB0aGUgdmVyc2lvbj8gTXkgcHJvZ3JhbSBkb2VzIG5vdCBoYXZlIHRoZSBjb25jZXB0IG9mIHZlcnNpb24sIGlmIHlvdSB3YW50IHRvIHNlZSBpdCwgcGxlYXNlIHR5cGUgdGhpcyBjb21tYW5kLiAgCiAgICAgICAgLS1oZWxwICBoZWxwICAgICAgICAgICAgICBJZiB5b3UgZnVja2luZyB3YW50IG1vcmUgaGVscCB0eXBlIHRoaXMgZ2V0IGNvbW1hbmQgYXJndW1lbnRzLgogICAgICAgIC0tZGVseSAgZCAgICAgICAgICAgICAgICAgVG9vIGZhc3Q/IFdhbnQgc29tZXRoaW5nIGEgbGl0dGxlIHNhZmVyPyBUaGVuIHRyYWRlIHNvbWUgcGVyZm9ybWFuY2UgZm9yIHNhZmV0eT8gU2V0IHRoZSBkZWxheS4KICAgICAgICAtLWxlbmd0aCBsZW4gICAgICAgICAgICAgIFdoYXQ/IERvIHlvdSB0aGluayB0aGUgcGFzc3dvcmQgaXMgdG9vIGxvbmc/IFRoZW4gc2V0IHRoaXMhCiAgICAgICAgLS1GaWxlUGF0aChGUCkgZmlsZV9wYXRoICBEbyB5b3UgdGhpbmsgaXQgaXMgc2xvdz8gVGhlbiBjcmVhdGUgYSBmaWxlIHRvIHNldCBjb21tb25seSB1c2VkIGNoYXJhY3RlcnMhCiAgICA=").unwrap()).unwrap());
+                std::process::exit(0);
             }
             if arg == &"--test"||arg == &"t"
             {
@@ -972,5 +972,4 @@ fn main() {
             }
         }
     }
-}
 }
