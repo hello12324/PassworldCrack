@@ -32,6 +32,7 @@
  ## C Language Project ----状态(进行中)
  	 PassworldCrack Rewritten version
 		这是rust语言PassworldCrack项目的重写版本,因为我发现底层语言的效率比rust语言好太多了(可能是我优化有问题),总之我准备用C语言重写这个项目,功能性可能和原来的差不多.
+		现在主要功能实现了,不过有问题
 	 PassworldCrack ArduinoLeomardo Version
 		这是rust语言PassworldCrack项目的Arduino版本,让暴力破解用于生活中,利用HID(Human Interface Divce)漏洞!
 

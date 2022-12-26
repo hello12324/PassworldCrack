@@ -21,47 +21,136 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
+
 
 #define CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_-+~`|\{}[]:;'<,>.?/"
 #define CHARS_1 '"'
 
-//void _STRCAT(char *dest, const char *src)
-//{
-//    char str1[100] = src;
-//    char str2[100] = dest;
-//    char str3[200];
-//    for (i = 0; str1[i] != '\0'; ++i)
-//    {
-//        str3[i] = str1[i];
-//    }
-//    for (j = 0; str2[j] != '\0'; ++j)
-//    {
-//        str3[i + j] = str2[j];
-//    }
-//    str3[i + j] = '\0';
-//    return str3;
-//}
-
 int main() {
 //char *strings = _STRCAT(CHARS, CHARS_1);
 size_t len = strlen(CHARS);
-for (int i = 1; i <= 5; i++) {
-    for (int j = 0; j < len; j++) {
-        printf("%c\n", CHARS[j]);
-        for (int k = 0; k < len; k++) {
-            printf("%c%c\n", CHARS[j], CHARS[k]);
-            for (int l = 0; l < len; l++) {
-                printf("%c%c%c\n", CHARS[j], CHARS[k], CHARS[l]);
-                for (int m = 0; m < len; m++) {
-                    printf("%c%c%c%c\n", CHARS[j], CHARS[k], CHARS[l], CHARS[m]);
-                    for(int q =0; q < len; q++){
-                        printf("%c%c%c%c%c\n", CHARS[j], CHARS[k], CHARS[l], CHARS[m],CHARS[q]);
-                    }
-                }
-            }
-        }
-    }
+for (int i0=0; i0<=7; i0++)
+{
+	if(i0==1){
+		for (int c0=0; c0<len; c0++)
+		{
+			printf("%c\n", CHARS[c0]);sleep(0.6);
+		}
+	}if(i0==2)
+	{
+		for (int c0=0; c0<len; c0++)
+		{
+			for (int c1=0; c1<len; c1++)
+			{
+				printf("%c%c\n", CHARS[c0], CHARS[c1]);sleep(0.6);
+			}
+		}
+	}if(i0==3)
+	{
+		for (int c0=0; c0<len; c0++)
+		{
+			for (int c1=0; c1<len; c1++)
+			{
+				for (int c2=0; c2<len; c2++)
+				{
+					printf("%c%c%c/n", CHARS[c0], CHARS[c1], CHARS[c2]);sleep(0.6);
+				}
+			}
+		}
+	}if(i0==4)
+	{
+		for (int c0=0; c0<len; c0++)
+		{
+			for (int c1=0; c1<len; c1++)
+			{
+				for (int c2=0; c2<len; c2++)
+				{
+					for (int c3=0; c3<len; c3++)
+					{
+						printf("%c%c%c%c\n", CHARS[c0], CHARS[c1], CHARS[c2], CHARS[c3]);sleep(0.6);
+					}
+				}
+			}
+		}
+	}if(i0==4)
+	{
+		for (int c0=0; c0<len; c0++)
+		{
+			for (int c1=0; c1<len; c1++)
+			{
+				for (int c2=0; c2<len; c2++)
+				{
+					for (int c3=0; c3<len; c3++)
+					{
+						printf("%c%c%c%c\n", CHARS[c0], CHARS[c1], CHARS[c2], CHARS[c3]);sleep(0.6);
+					}
+				}
+			}
+		}
+	}if(i0==5)
+	{
+		for (int c0=0; c0<len; c0++)
+		{
+			for (int c1=0; c1<len; c1++)
+			{
+				for (int c2=0; c2<len; c2++)
+				{
+					for (int c3=0; c3<len; c3++)
+					{
+						for (int c4=0; c4<len; c4++)
+						{
+							printf("%c%c%c%c%c\n", CHARS[c0], CHARS[c1], CHARS[c2], CHARS[c3], CHARS[c4]);sleep(0.6);
+						}
+					}
+				}
+			}
+		}
+	}if(i0==6)
+	{
+		for (int c0=0; c0<len; c0++)
+		{
+			for (int c1=0; c1<len; c1++)
+			{
+				for (int c2=0; c2<len; c2++)
+				{
+					for (int c3=0; c3<len; c3++)
+					{
+						for (int c4=0; c4<len; c4++)
+						{
+							for (int c5=0; c5<len; c5++)
+							{
+								printf("%c%c%c%c%c%c\n", CHARS[c0], CHARS[c1], CHARS[c2], CHARS[c3], CHARS[c4],CHARS[c5]);sleep(0.6);
+							}
+						}
+					}
+				}
+			}
+		}
+	}if(i0==7)
+	{
+		for (int c0=0; c0<len; c0++)
+		{
+			for (int c1=0; c1<len; c1++)
+			{
+				for (int c2=0; c2<len; c2++)
+				{
+					for (int c3=0; c3<len; c3++)
+					{
+						for (int c4=0; c4<len; c4++)
+						{
+							for (int c5=0; c5<len; c5++)
+							{
+								for (int c6=0; c6<len; c6++)
+								{
+									printf("%c%c%c%c%c%c\n", CHARS[c0], CHARS[c1], CHARS[c2], CHARS[c3], CHARS[c4],CHARS[c5],CHARS[c6]);sleep(0.6);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
-
-return 0;
 }

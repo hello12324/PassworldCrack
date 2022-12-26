@@ -37,6 +37,8 @@
   ## C Language Project ---- status (in progress)
           Passworld Crack Rewritten version
                  This is a rewritten version of the Rust language PassworldCrack project, because I found that the efficiency of the underlying language is much better than the rust language (maybe I have a problem with optimization), in short, I plan to rewrite this project in C language, and the functionality may be the same as the original almost.
+		 Now the main function has been realized, but there is a problem!
+
           Passworld Crack Arduino Leomardo Version
                  This is the Arduino version of the Rust language PassworldCrack project, which allows brute force cracking to be used in daily life, using the HID (Human Interface Divce) vulnerability!
 
