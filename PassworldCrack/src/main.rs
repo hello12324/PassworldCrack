@@ -1,38 +1,61 @@
+//
+//     ____                           ____       __    __    ______                __  
+//    / __ \____ ____________      __/ __ \_____/ /___/ /   / ____/________ ______/ /__
+//   / /_/ / __ `/ ___/ ___/ | /| / / / / / ___/ / __  /   / /   / ___/ __ `/ ___/ //_/
+//  / ____/ /_/ (__  |__  )| |/ |/ / /_/ / /  / / /_/ /   / /___/ /  / /_/ / /__/ ,<   
+// /_/    \__,_/____/____/ |__/|__/\____/_/  /_/\__,_/____\____/_/   \__,_/\___/_/|_|  
+//                                                 /_____/                            
+//
+// ______________________________________________________________________________ 
+//| Use the simplest combinatorial algorithm in the second grade                 |
+//|   of middle school (is it an algorithm? Haha) to achieve real-time generation| 
+//|      of characters with only 93 or less characters without a dictionary.     |
+//|                                                                              |
+//| 2022-12-26 <My emal>testsendkfotesycike@gmail.com                            |
+//|      Marry Christmas!                                                        |
+//|                                                      <Make by GeumBo>        |
+//|                                                                              |
+// ------------------------------------------------------------------------------
+//
+
+
 /*
 illustrate
      This program does not have any use value, it is just written for fun.
      The function of this program is not to use the generated dictionary to use passwords, but to automatically report characters to generate passwords in real time, although this idea is still problematic.
             make by geumbo
 */
-
-use std::fs::{read_to_string}; //读取文件
-use rand::{thread_rng, Rng}; //随机模块
-use std::{ 
-    time::Duration,
-    thread, 
-    time, 
-    fs::*,
-    fs,
-    io,
-    io::Write,
-    env,
-    env::args,
-    io::ErrorKind,
-    time::{
+//调用的模块
+use rand::{thread_rng, Rng}; //随机模块,需要安装
+use std::{  //基本模块
+    time::Duration, //时间函数，用于计时
+    thread, //进程模块,用于关闭程序,多进程等.
+    time, //时间模块.
+    fs::*, //文件操作模块.
+    fs,//文件操作模块.
+    io,//I/O读取操作模块,用于输入输出等操作.
+    io::Write, //I/O 文件写入函数调用.
+    env, //env模块,用于接受环境的数据参数等.
+    env::args, //接受命令行参数.
+    io::ErrorKind, //错误,如果执行程序报错时使用它接收错误.
+    time::{ //时间模块,调用了一个函数.
         Instant
     }
 };
-//hash加密
+//hash加密.
 use crypto::{
     sha2::Sha256,
     digest::Digest
 };
-use base64::{ //base64加密
+use base64::{ //base64加密,只是用于将base code of logo解析
     encode,
     decode
 };
+//第三方时间模块.
 use chrono::{DateTime, Local, TimeZone};
+
 //内部的代码可能稍微有点不是很人性化:).
+
 
 // hash加密,之后用于hash的密码解密.
 fn hash_encryt(hash_value: String) -> String
@@ -43,7 +66,7 @@ fn hash_encryt(hash_value: String) -> String
     return hasher.result_str()
 }
 
-//输出的规格,用于测试密码的输出和规格.
+//输出的规格,用于测试密码的输出和规格. 当然函数如果密码输入成功的话就会保存
 fn output_style(_passworld: String, _time_sleep: Duration, PASSWORLD: String)
 {
     let now: DateTime<Local> = Local::now();
@@ -51,14 +74,14 @@ fn output_style(_passworld: String, _time_sleep: Duration, PASSWORLD: String)
     let _1passworld = _passworld.clone();
     let mut rng = thread_rng();
     let a = rng.gen_range(31, 37);
-    print!("[\x1b[32m:)\x1b[0m \x1b[34mTEST OUTPUT\x1b[0m] [\x1b[{fuck}m{}\x1b[0m] -> [\x1b[{fuck}m{hash_1}\x1b[0m]    Wait...\r",_passworld,fuck=a,hash_1 = hash_encryt(_passworld.clone()));thread::sleep(_time_sleep);
+    print!("[\x1b[32m:)\x1b[0m \x1b[34mTEST OUTPUT\x1b[0m] [\x1b[{fuck}m{}\x1b[0m] -> [\x1b[{fuck}m{hash_1}\x1b[0m]\r",_passworld,fuck=a,hash_1 = hash_encryt(_passworld.clone()));thread::sleep(_time_sleep);
     let start_time = Instant::now();
     let passworld_ = passworldTEST(PASSWORLD, _passworld);
     let stop_time = start_time.elapsed();
     if passworld_ == true{
         println!("[\x1b[32m:)\x1b[0m]Passworld Success, Passworld is \x1b[34m{}\x1b[0m and hash value is \x1b[34m{hash_2}\x1b[0m", &_1passworld, hash_2 = hash_encryt(_1passworld.clone()));
         let save = format!("
-                    [{}]
+                [{}]
         [PASSWORLD]  |  [HASH_VALUE]
             {}               {}
         
@@ -68,7 +91,7 @@ fn output_style(_passworld: String, _time_sleep: Duration, PASSWORLD: String)
     }
 }
 
-//这个只是测试函数,只是测试密码的破解速度.
+//密码匹配机制,如果你觉得有点小题大作了的话可以完全修改,实际上不需要pass变量保存成功失败变量去匹配,可以直接使用if语句去匹配两个值的相同性.
 fn passworldTEST(pasphrase: String, Enum: String) -> bool
 {
     let mut pass = 0;
@@ -124,6 +147,7 @@ fn read_fileF(Default_: String,FP: String) -> Result<String, std::io::Error>
     }
 }
 
+//主要函数
 fn _func(time_Sleep: u64, FNP: String, count_1: i32, _PASSWORLD_1: String)
 {
     let _PASSWORLD = &_PASSWORLD_1.trim();
@@ -876,6 +900,7 @@ fn _func(time_Sleep: u64, FNP: String, count_1: i32, _PASSWORLD_1: String)
 }
 }
 
+//程序执行函数Main
 fn main() {
     println!("{}", String::from_utf8(decode("CiAgICBfX19fX19fX19fX18KICAgfFBhc3N3MHJsZCAbWzQxbTopG1swbXwKICAgfCAgG1szMm06KBtbMG0gIENyYWNrIHwKICAgIC0tLS0tLS0tLS0tLQogICAgICAgIBtbMzFtTWVycnkbWzBtIBtbMzJtQ2hyaXN0bWFzIRtbMG0KICAgICAgICAgICAgbWFrZSBieSBnZXVtYm8K").unwrap()).unwrap());
     loop{
@@ -888,24 +913,29 @@ fn main() {
             println!("[\x1b[32m:)\x1b[0m] Are You Sure continue?(Yes or No Default:Y)[是否继续 默认继续]");
             let mut input = String::new();
             io::stdin().read_line(&mut input).expect("[\x1b[41m:(\x1b[0m]failed");
+            input.truncate(input.len()-1);
             if input.trim() == "" || input.trim() == "Y"
             {
             println!("[\x1b[32m:)\x1b[0m] Passworld length(Default is 20)[密码的长度 默认20]");
             let mut count_2 = String::new();
             io::stdin().read_line(&mut count_2).expect("[\x1b[41m:(\x1b[0m]Failed");
+            count_2.truncate(count_2.len()-1);
             let num_2: Result<i64, _> = count_2.trim().parse();
             let num_2_p = num_2.unwrap_or(-1);
             println!("[\x1b[32m:)\x1b[0m] Delay(default 400)[延迟, 默认为400ms]");
             let mut time_ = String::new();
             io::stdin().read_line(&mut time_).expect("[\x1b[41m:(\x1b[0m]Failed");
+            time_.truncate(time_.len()-1);
             let num: Result<i64, _> = time_.trim().parse();
             let num_ = num.unwrap_or(-1);
             println!("[\x1b[32m:)\x1b[0m] custom file[自定义文件]");
             let mut FNP_C = String::new();
             io::stdin().read_line(&mut FNP_C).expect("[\x1b[41m:(\x1b[0m]FAILED");
+            FNP_C.truncate(FNP_C.len()-1);
             println!("[\x1b[32m:)\x1b[0m] Please Input HashPassworld(sha256) File Path, Default file name is a 'passworld.txt'[请输入hash密码文件(sha256类型)路径,默认'passworld.txt']");
             let mut PA_ = String::new();
             io::stdin().read_line(&mut PA_).expect("[\x1b[41m:(\x1b[0m]FAILED Please Input Passw0rld!");
+            PA_.truncate(PA_.len()-1);
             let mut PA_1 = read_fileF("passworld.txt".to_string(),PA_.to_string()).expect("[\x1b[41m:(\x1b[0m] '\x1b[34m Please guide the file correctly, such as '/path/path1/pass.txt', enter the full path or change the file to 'passworld.txt' and put it in the same path as the program, or in the terminal path!] 请正确引导文件,例如'/path/path1/pass.txt'这个输入全路径或者将文件更改为'passworld.txt'然后放在和程序同一路径下,或者终端路径下! [\x1b[42m:)\x1b[0m]  ");
                 if num_ == -1 {
                     if num_2_p == -1{

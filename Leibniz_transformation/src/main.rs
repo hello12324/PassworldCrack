@@ -1,3 +1,32 @@
+//      __         _ __          _          __                        ____                           __  _           
+//     / /   ___  (_) /_  ____  (_)___     / /__________ _____  _____/ __/___  _________ ___  ____ _/ /_(_)___  ____ 
+//    / /   / _ \/ / __ \/ __ \/ /_  /    / __/ ___/ __ `/ __ \/ ___/ /_/ __ \/ ___/ __ `__ \/ __ `/ __/ / __ \/ __ \
+//   / /___/  __/ / /_/ / / / / / / /_   / /_/ /  / /_/ / / / (__  ) __/ /_/ / /  / / / / / / /_/ / /_/ / /_/ / / / /
+//  / /_____/\___/_/_.___/_/ /_/_/ /___/   \__/_/   \__,_/_/ /_/____/_/  \____/_/  /_/ /_/ /_/\__,_/\__/_/\____/_/ /_/ 
+//                                                                                                                                                           
+//                                                                                                   
+// _____________________________________________________________________________________________________________________________
+//|The Leibniz transformation is a mathematical tool that is often used to solve ordinary differential and integral equations.  |
+//|It can convert the time-domain function into a frequency-domain function,                                                    |
+//|    making the problem easier to solve.                                                                                      |
+//|                                                                                                                             |
+//|In the computer field, the Leibniz transformation has a wide range of applications. For example, it can be used for:         |
+//|                                                                                                                             |
+//| -Image processing: Leibniz transform can be used for image sharpening, denoising, image segmentation and other operations.  |
+//|                                                                                                                             |
+//| -Audio processing: Leibniz transforms can be used in the analysis, processing and adjustment of audio signals.              |
+//|                                                                                                                             |
+//| -Data Compression: Leibniz transformations can be used to compress data to a smaller size, saving storage space.            |
+//|                                                                                                                             |
+//|In general,                                                                                                                  |
+//|    Leibniz transformation plays an important role in the computer field,                                                    |
+//|            providing us with a powerful tool to solve various mathematical problems.                                        |        
+//|                                                                                                                             |
+//| 2022-12-26 <My emal>testsendkfotesycike@gmail.com                                                                           |
+//| 	Merry Christmas!                                                                                                        |
+//|                                                              <Make by GeumBo>                                               |
+// -----------------------------------------------------------------------------------------------------------------------------
+//
 use std::{
     f64::consts::PI,
 };

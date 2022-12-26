@@ -1,4 +1,3 @@
-#这个python文件只是用于简单的辅助生成字符等操作.
 # This python file is only used for simple auxiliary generation of characters and other operations.
 #                                                   make by geumbo
 
