@@ -30,11 +30,10 @@
  ## PassworldProgram ----状态(可以运行, 待优化)
  	这是一个带密码的程序,只是简单的编写测试,例如时攻击测试等等.
  ## C Language Project ----状态(进行中)
- 	### PassworldCrack Rewritten version
+ 	 PassworldCrack Rewritten version
 		这是rust语言PassworldCrack项目的重写版本,因为我发现底层语言的效率比rust语言好太多了(可能是我优化有问题),总之我准备用C语言重写这个项目,功能性可能和原来的差不多.
-	### PassworldCrack ArduinoLeomardo Version
+	 PassworldCrack ArduinoLeomardo Version
 		这是rust语言PassworldCrack项目的Arduino版本,让暴力破解用于生活中,利用HID(Human Interface Divce)漏洞!
-	> 这个项目敬请期待!
 
 > 这里面的项目想看详细内容请看release!.
 > 这里面的项目没有任何利用价值,只是玩玩.
