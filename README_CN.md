@@ -8,16 +8,17 @@
  > PassworldCarck 实际上我是想把这个功能实现在arduino编程板上面(利用HID漏洞(Human Interface Device)),因为编程板上面不可以填入超级多的字节所以我想实现自动实时生成密码的项目,现在已经实现了,使用rust语言,稍后我会利用在arduino上面实现,并公开代码到这个仓库.
 
 # 我的项目
- ## ANN(Artificial Neural Network) ----状态(不可执行, 进行中)
+ ## ANN(Artificial Neural Network)
  	这里是我简单写的人工神经网络,现在只是雏形,不能被执行
- ## leibniz_transformation ----状态(可执行, 待优化)
+ ## leibniz_transformation
  	莱布尼茨变换是一种数学方法, 用于将一个时间函数转换为其复平面函数的表示. 莱布尼茨变换最常用来解决常微分方程(differential equations),也常用来分析电气和电子系统中的信号和系统动态行为.
 	具体来说, 莱布尼茨变换可以将时间函数中的微分项和积分项转换为柿子(complex functions)的乘积和和, 这样就可以用线性代数的方法来解决问题了. 莱布尼茨变换也可以用来分析系统的稳态行为(steady-state behavior), 因为在稳态情况下, 系统的状态不再变化, 可以使用复数谱分析(complex spectra analysis)来研究系统的性质.,不一定正确,但是大概就是这样了.
- ## PassworldCrack ----状态(可运行,待优化)
+ ## PassworldCrack
  	这是一个不需要字典实时生成密码的项目,只需要一个"DefaultPassworld.txt"文件(文件需要和程序在一个目录或者在终端的路径下,但是运行时可以自定义路径),文件内部有94个字符(也可以自定义常用字符)就可以生成密码,利用到了离散数学中的基本应用,组合数学(Combinatorics),如下演示
 
 	- 假如一共有3个字符,要破解一个2位数密码,排列组合如下
-		1. aa    --  
+			 --
+		1. aa      |
 		2. ab      |
 		3. ac      |
 		4. ba      |
@@ -25,11 +26,12 @@
 		6. bc      |
 		7. ca 	   | 	
 		8. cb      |
-		9. cc    __|
+		9. cc      |
+                         --
 	利用到了直线排列就是考虑顺序的,所以效率还是有问题.
- ## PassworldProgram ----状态(可以运行, 待优化)
+ ## PassworldProgram
  	这是一个带密码的程序,只是简单的编写测试,例如时攻击测试等等.
- ## C Language Project ----状态(进行中)
+ ## C Language Projects
  	 PassworldCrack Rewritten version
 		这是rust语言PassworldCrack项目的重写版本,因为我发现底层语言的效率比rust语言好太多了(可能是我优化有问题),总之我准备用C语言重写这个项目,功能性可能和原来的差不多.
 		现在主要功能实现了,不过有问题
