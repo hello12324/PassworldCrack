@@ -94,17 +94,8 @@ fn output_style(_passworld: String, _time_sleep: Duration, PASSWORLD: String)
 //密码匹配机制,如果你觉得有点小题大作了的话可以完全修改,实际上不需要pass变量保存成功失败变量去匹配,可以直接使用if语句去匹配两个值的相同性.
 fn passworldTEST(pasphrase: String, Enum: String) -> bool
 {
-    let mut pass = 0;
     if hash_encryt(Enum) == (pasphrase) {
-        pass = 1;
-    }else{
-        pass = 0;
-    }
-    if pass == 1{
         return true;
-    }
-    else if pass == 0{
-        return false;
     }else{
         return false;
     }
