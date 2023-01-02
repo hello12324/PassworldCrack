@@ -64,5 +64,5 @@ def genACSII(x, y):
                 print("{}", end="")
         print()
 if __name__ == "__main__":
-    hash_gen(b"pa;");
+    hash_gen(bytes(input().encode()));
     pass;

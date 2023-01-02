@@ -100,7 +100,6 @@ fn passworldTEST(pasphrase: String, Enum: String) -> bool
         return false;
     }
 } 
-
 //文件写入,如果文件已存在就追加写入.
 fn _file(contents: String,FNP: String)
 {

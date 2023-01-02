@@ -52,15 +52,8 @@ void _STRLEN(char *strings)
 }
 void setup() {
 	char strings = _STRCAT("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_-+~`|\\{\\}[]:;'<,>.?/",'"');
-    char c0, c1, c2;
-    int i0, i1, i2;
-
-    for (i0 = 0; i0 < strlen(strings); i0++) {
-    c0 = strings[i0];
-    for (i1 = 0; i1 < strlen(strings); i1++) {
-        c1 = strings[i1];
-        for (i2 = 0; i2 < strlen(strings); i2++) {
-        c2 = strings
+    char len = _STRLEN(strings)
+    
         
 }
 
