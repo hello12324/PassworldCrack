@@ -9,7 +9,7 @@
 
 # 我的项目
  ## ANN(Artificial Neural Network)
- 	这里是我简单写的人工神经网络,现在只是雏形,不能被执行
+ 	这里是我简单写的人工神经网络,现在只是雏形,目前不可执行.
  ## leibniz_transformation
  	莱布尼茨变换是一种数学方法, 用于将一个时间函数转换为其复平面函数的表示. 莱布尼茨变换最常用来解决常微分方程(differential equations),也常用来分析电气和电子系统中的信号和系统动态行为.
 	具体来说, 莱布尼茨变换可以将时间函数中的微分项和积分项转换为柿子(complex functions)的乘积和和, 这样就可以用线性代数的方法来解决问题了. 莱布尼茨变换也可以用来分析系统的稳态行为(steady-state behavior), 因为在稳态情况下, 系统的状态不再变化, 可以使用复数谱分析(complex spectra analysis)来研究系统的性质.,不一定正确,但是大概就是这样了.
@@ -33,10 +33,10 @@
  	这是一个带密码的程序,只是简单的编写测试,例如时攻击测试等等.
  ## C Language Projects
  	 PassworldCrack Rewritten version
-		这是rust语言PassworldCrack项目的重写版本,因为我发现底层语言的效率比rust语言好太多了(可能是我优化有问题),总之我准备用C语言重写这个项目,功能性可能和原来的差不多.
+		这是rust语言PassworldCrack项目的重写版本,因为底层语言的效率比rust语言更高校(可能rust语言代码部分优化问题),总之我准备用C语言重写这个项目,功能性可能和原来的差不多.
 		现在主要功能实现了,不过有问题
 	 PassworldCrack ArduinoLeomardo Version
-		这是rust语言PassworldCrack项目的Arduino版本,让暴力破解用于生活中,利用HID(Human Interface Divce)漏洞!
+		这是rust语言PassworldCrack项目的Arduino版本,让暴力破解用于生活中,利用HID(Human Interface Divce)漏洞.
 
 > 这里面的项目想看详细内容请看release!.
 > 这里面的项目没有任何利用价值,只是玩玩.
