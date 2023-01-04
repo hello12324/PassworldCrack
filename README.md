@@ -11,6 +11,8 @@
 # My project
   ## ANN(Artificial Neural Network)
 	Here is my simple artificial neural network, which is just a prototype and cannot be implemented
+  ## AntiTimmingAttack
+  	This is an anti-timing attack project. Timing attack is a kind of password attack. The correctness of the password is estimated by calculating the return time of the password program. Please see my MyIdea repo for details.
   ## leibniz_transformation
   	Leibniz transformation is a mathematical method for converting a time function into its complex plane function representation. Leibniz transformation is most commonly used to solve ordinary differential equations (differential equations), and is also commonly used to analyze electrical and electronic Signals in systems and system dynamic behavior.
 	Specifically, the Leibniz transform can convert the differential and integral terms in the time function into the product and sum of persimmons (complex functions), so that the linear algebra method can be used to solve the problem. Leibniz transform It can also be used to analyze the steady-state behavior of the system (steady-state behavior), because in the steady state, the state of the system does not change anymore, and the complex spectrum analysis can be used to study the nature of the system. Not necessarily Correct, but that's about it.
