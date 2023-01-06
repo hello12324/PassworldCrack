@@ -40,6 +40,19 @@
  ### PassworldCrack ArduinoLeomardo Version
  这是rust语言PassworldCrack项目的Arduino版本,让暴力破解用于生活中,利用HID(Human Interface Divce)漏洞.
 
+# 使用方法
+ ## PassworldCrack
+ 本项目的执行程序需要的文件如下,你在下载本执行程序应该可以看到这些文件或者在release.
+ - ```DefaultPassworld.txt```  密码破解需要的基本字符串,默认有所有的字符串,可以修改为常用的字符串.
+ - ```passworld.txt```   保存hash256位密码用于破解.
+ 文件需要可执行文件在同一个目录或者在终端指令的目录下(你可以不会明白).
+ 如果你要修改本项目代码并执行的话请保证本地包含cargo和[rustup](https://rustup.rs/). 如果你已经安装只需要执行 ```cargo run``` 指令就可以编译运行. 如果你只是想编译请执行 ```cargo build --release``` 指令, 执行文件会保存在 ```./target/release``` 目录下.
+ ## PassworldProgram
+ 本项目需要的文件.
+ - ```passworld.txt``` 保存256位密码用于保存密码.
+ 这是一个简单的密码程序,仅仅用于测试,只是玩玩. 默认的密码为'passworld'. 如果你要生成其他的hash密码使用的话, 你可以执行我的python脚本内的hash_gen函数. 文件名为'_auxiliary.py',请自行修改执行.
+
+
 > 这里面的项目想看详细内容请看release!.
 > 这里面的项目没有任何利用价值,只是玩玩.
 
