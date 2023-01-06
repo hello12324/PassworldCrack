@@ -26,35 +26,37 @@ illustrate
             make by geumbo
 */
 //调用的模块
-use rand::{thread_rng, Rng}; //随机模块,需要安装
-use std::{  //基本模块
-    time::Duration, //时间函数，用于计时
-    thread, //进程模块,用于关闭程序,多进程等.
-    time, //时间模块.
-    fs::*, //文件操作模块.
-    fs,//文件操作模块.
-    io,//I/O读取操作模块,用于输入输出等操作.
-    io::Write, //I/O 文件写入函数调用.
-    env, //env模块,用于接受环境的数据参数等.
-    env::args, //接受命令行参数.
-    io::ErrorKind, //错误,如果执行程序报错时使用它接收错误.
-    time::{ //时间模块,调用了一个函数.
+//Called module
+use rand::{thread_rng, Rng}; //随机模块,需要安装 random module, Need to install.
+use std::{  //基本模块 default module
+    //time::Duration, //时间函数，用于计时 
+    thread, //进程模块,用于关闭程序,多进程等. Thread module
+    time, //时间模块. time module 
+    fs::*, //文件操作模块. file operation module
+    fs,//文件操作模块. file operation module
+    io,//I/O读取操作模块,用于输入输出等操作. input/output module
+    io::Write, //I/O 文件写入函数调用. file io write module
+    env, //env模块,用于接受环境的数据参数等. accept environmental data
+    env::args, //接受命令行参数. Accept command parameters.
+    io::ErrorKind, //错误,如果执行程序报错时使用它接收错误. catch error.
+    time::{ //时间模块,调用了一个函数. time module.
         Instant
     }
 };
-//hash加密.
+//hash加密. hash encoding.
 use crypto::{
     sha2::Sha256,
     digest::Digest
 };
-use base64::{ //base64加密,只是用于将base code of logo解析
+use base64::{ //base64加密,只是用于将base code of logo解析 base64 encoding, just only decoding logo strings.
     encode,
     decode
 };
-//第三方时间模块.
+//第三方时间模块,用于记录密码成功的时间. A third-party module, used to save the successful password record time
 use chrono::{DateTime, Local, TimeZone};
 
 //内部的代码可能稍微有点不是很人性化:).
+//The internal code may be a bit impersonal :).
 
 
 // hash加密,之后用于hash的密码解密.
@@ -66,7 +68,8 @@ fn hash_encryt(hash_value: String) -> String
     return hasher.result_str()
 }
 
-//输出的规格,用于测试密码的输出和规格. 当然函数如果密码输入成功的话就会保存
+//输出的规格,用于测试密码的输出和规格. 当然函数如果密码输入成功的话就会保存.
+//The specification of the output, used to test the output and specification of the password. Of course, the function will be saved if the password is entered successfully.
 fn output_style(_passworld: String, _time_sleep: Duration, PASSWORLD: String)
 {
     let now: DateTime<Local> = Local::now();
@@ -75,9 +78,7 @@ fn output_style(_passworld: String, _time_sleep: Duration, PASSWORLD: String)
     let mut rng = thread_rng();
     let a = rng.gen_range(31, 37);
     print!("[\x1b[32m:)\x1b[0m \x1b[34mTEST OUTPUT\x1b[0m] [\x1b[{fuck}m{}\x1b[0m] -> [\x1b[{fuck}m{hash_1}\x1b[0m]\r",_passworld,fuck=a,hash_1 = hash_encryt(_passworld.clone()));thread::sleep(_time_sleep);
-    let start_time = Instant::now();
     let passworld_ = passworldTEST(PASSWORLD, _passworld);
-    let stop_time = start_time.elapsed();
     if passworld_ == true{
         println!("[\x1b[32m:)\x1b[0m]Passworld Success, Passworld is \x1b[34m{}\x1b[0m and hash value is \x1b[34m{hash_2}\x1b[0m", &_1passworld, hash_2 = hash_encryt(_1passworld.clone()));
         let save = format!("
@@ -92,6 +93,7 @@ fn output_style(_passworld: String, _time_sleep: Duration, PASSWORLD: String)
 }
 
 //密码匹配机制,如果你觉得有点小题大作了的话可以完全修改,实际上不需要pass变量保存成功失败变量去匹配,可以直接使用if语句去匹配两个值的相同性.
+//Password matching mechanism, if you think it’s a bit of a fuss, you can completely modify it. In fact, you don’t need the pass variable to save the success or failure variable to match. You can directly use the if statement to match the identity of the two values.
 fn passworldTEST(pasphrase: String, Enum: String) -> bool
 {
     if hash_encryt(Enum) == (pasphrase) {
@@ -101,6 +103,7 @@ fn passworldTEST(pasphrase: String, Enum: String) -> bool
     }
 } 
 //文件写入,如果文件已存在就追加写入.
+//Write to the file, append if the file already exists.
 fn _file(contents: String,FNP: String)
 {
     let current_dir = env::current_dir().unwrap();
@@ -110,12 +113,13 @@ fn _file(contents: String,FNP: String)
         .append(true)
         .open(current_dir.join(FNP)).expect("[\x1b[41m:(\x1b[0m] Failed");
 
-    // 写入内容
+    // 写入内容 write content.
     file.write_all(contents.as_bytes()).expect("[\x1b[41m:(\x1b[0m] Failed");
 
 }
 
 //读取文件,如果用户自定义了自己的字符文件就可以使用这个函数去调用.
+//Read the file, if the user has customized his own character file, he can use this function to call.
 fn read_fileF(Default_: String,FP: String) -> Result<String, std::io::Error> 
 {
     let current_dir_1 = env::current_dir().unwrap();
@@ -137,7 +141,7 @@ fn read_fileF(Default_: String,FP: String) -> Result<String, std::io::Error>
     }
 }
 
-//主要函数
+//主要函数 main function.
 fn _func(time_Sleep: u64, FNP: String, count_1: i32, _PASSWORLD_1: String)
 {
     let _PASSWORLD = &_PASSWORLD_1.trim();
@@ -891,6 +895,7 @@ fn _func(time_Sleep: u64, FNP: String, count_1: i32, _PASSWORLD_1: String)
 }
 
 //程序执行函数Main
+//the main excute function.
 fn main() {
     println!("{}", String::from_utf8(decode("CiAgICBfX19fX19fX19fX18KICAgfFBhc3N3MHJsZCAbWzQxbTopG1swbXwKICAgfCAgG1szMm06KBtbMG0gIENyYWNrIHwKICAgIC0tLS0tLS0tLS0tLQogICAgICAgIBtbMzFtTWVycnkbWzBtIBtbMzJtQ2hyaXN0bWFzIRtbMG0KICAgICAgICAgICAgbWFrZSBieSBnZXVtYm8K").unwrap()).unwrap());
         let args: Vec<String> = args().collect();

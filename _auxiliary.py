@@ -3,6 +3,7 @@
 
 import base64
 import hashlib
+import os
 def hash_gen(hash_):
     a = hashlib.sha256(hash_)
     print(a.hexdigest());
@@ -63,6 +64,19 @@ def genACSII(x, y):
             else:
                 print("{}", end="")
         print()
+
+def TimingAttack():
+
+    with open(os.path.dirname(__file__)+"/TIMING.txt", "r") as f:
+        a = f.readlines()
+        num = 0;
+        lines_ = 0;
+        for i in a:
+            num +=int(i);
+            lines_ +=1;
+
+        print(num/lines_);
+
 if __name__ == "__main__":
     hash_gen(bytes(input().encode()));
     pass;
