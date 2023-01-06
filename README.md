@@ -43,7 +43,7 @@
 
   ### Passworld Crack Arduino Leomardo Version
   This is the Arduino version of the Rust language PassworldCrack project, which allows brute force cracking to be used in daily life, using the HID (Human Interface Divce) vulnerability!
-# Useage
+# Usage
  ## PassworldCrack
  There will be several files in the PassworldCrack project or in the release.
  - ```DefaultPassworld.txt```  Custom strings, used to customize common strings.
@@ -52,7 +52,7 @@
  If you want to write your own password cracking tool, change the code and compile it yourself, please make sure that cargo and [rustup](https://rustup.rs/) have been installed locally. If you are sure to install it, you only need to execute ```cargo run``` in the PassworldCrack directory to execute it directly. If you just want to generate an execution file Please execute ```cargo build --release```, the file will be generated under ```./target/release```.
  ## PassworldProgram
  This executable will use the following files.
- - 'passworld.txt' Save the hash256bit password.
+ - ```passworld.txt``` Save the hash256bit password.
  This is a simple password program just for fun. The default hash password is 'passworld'. If you want to generate your own hash256bit password, you can go to the hash_gen function in the python script I wrote. The python file I wrote named '_auxiliary.py', you should see it. Then please adjust the execution function manually.
 
 > If you want to see the details of the projects here, please see the release!.
