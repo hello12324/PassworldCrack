@@ -1,4 +1,4 @@
-a[中文文档](./README_CN.md)
+[中文文档](./README_CN.md)
 # Explanation
   > This is my practice project for learning the rust language. Although the writing is not very good, I will work hard!.
   > If you think there is something wrong with my code please
