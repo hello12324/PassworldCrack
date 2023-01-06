@@ -54,7 +54,10 @@
  This executable will use the following files.
  - ```passworld.txt``` Save the hash256bit password.
  This is a simple password program just for fun. The default hash password is 'passworld'. If you want to generate your own hash256bit password, you can go to the hash_gen function in the python script I wrote. The python file I wrote named '_auxiliary.py', you should see it. Then please adjust the execution function manually.
-
+# Contributing
+ Go to my mailbox to communicate with me, and you can contribute code after my consent!.
+# License
+ used MIT License.
 > If you want to see the details of the projects here, please see the release!.
 > The items here have no use value, just for fun.
 
