@@ -32,13 +32,23 @@ def base_transformation():
             \x1b[31mMerry\x1b[0m \x1b[32mChristmas!\x1b[0m
                 make by geumbo
     """
+
+    logo3 = """
+     ______________
+    |AntiTimming \x1b[41m:)\x1b[0m|
+    |\x1b[32m:(\x1b[0m  Attack    |
+     --------------
+            \x1b[31mMerry\x1b[0m \x1b[32mChristmas!\x1b[0m
+                make by geumbo
+    """
+
     other = """
 \x1b[33m(tips!)\x1b[0m This program has a parameter mode that can be used, just enter the parameters in the terminal!
     Usage:
         [Program file] [args]
-        \x1b[33m(tips!)\x1b[0m Please enter the help command to get more instructions!
+        \x1b[33m(tips!)\x1b[0m Please enter the \x1b[32mhelp\x1b[0m command to get more instructions!
+"""
 
-    """
     command = """
     Usage:
         --version                 Do you want to see the version? My program does not have the concept of version, if you want to see it, please type this command.  
@@ -52,25 +62,22 @@ def base_transformation():
     \x1b[33m(Version)\x1b[0m
                 No fucking Version\x1b[41m:)\x1b[0m.
     """
+    command1 = """
+    Usage:
+        [the program] [the first strings] [the second strings]
+    """
     logoL = []
     logoL.append(logo)
     logoL.append(logo1)
     logoL.append(logo2)
+    logoL.append(logo3)
     logoL.append(other)
     logoL.append(command)
+    logoL.append(command1)
     logoL.append(version)
 
     for i in logoL:
         [print(i0)for i0 in str(base64.encodebytes(bytes(i.encode()))).split("\\n")]
-
-def genACSII(x, y):
-    for i in range(x):
-        for j in range(y):
-            if i == 0 or j==0 or i==x-1 or j==y-1:
-                print("{}", end="")
-            else:
-                print("{}", end="")
-        print()
 
 def TimingAttack():
 

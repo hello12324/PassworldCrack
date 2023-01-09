@@ -18,11 +18,13 @@
 use std::{
     time::{
         Instant,
-        Duration
     },
     io::Write,
     fs::*,
     env
+};
+use base64::{
+    decode
 };
 
 //异或运算,编程语言中符号为'^',运算基本原理是这样 => False(0) ^ False(0) = False(0), True(1) ^ True(1) = True(1), False(0) ^ True(1) = True(1), True(1) ^ False(0) = True(1)
@@ -78,7 +80,6 @@ fn _SAFE_EQU(a: String, b: String) -> bool{
         return false;
     }
     let mut pass = 0;
-    let mut status = 0;
     loop{
         if 0 < a.len() {
             pass = xor(a.to_string(), b.to_string());
@@ -86,7 +87,6 @@ fn _SAFE_EQU(a: String, b: String) -> bool{
         }
     }
     return pass == 0;
-
 }
 
 
@@ -107,16 +107,19 @@ fn _file(contents: String,FNP: String)
 //测试
 //test
 fn main(){ 
+    println!("{}", String::from_utf8(decode("CiAgICAgX19fX19fX19fX19fX18KICAgIHxBbnRpVGltbWluZyAbWzQxbTopG1swbXwKICAgIHwbWzMybTooG1swbSAgQXR0YWNrICAgIHwKICAgICAtLS0tLS0tLS0tLS0tLQogICAgICAgICAgICAbWzMxbU1lcnJ5G1swbSAbWzMybUNocmlzdG1hcyEbWzBtCiAgICAgICAgICAgICAgICBtYWtlIGJ5IGdldW1ibwogICAg").unwrap()).unwrap());
+    println!("{}", String::from_utf8(decode("ChtbMzNtKHRpcHMhKRtbMG0gVGhpcyBwcm9ncmFtIGhhcyBhIHBhcmFtZXRlciBtb2RlIHRoYXQgY2FuIGJlIHVzZWQsIGp1c3QgZW50ZXIgdGhlIHBhcmFtZXRlcnMgaW4gdGhlIHRlcm1pbmFsIQogICAgVXNhZ2U6CiAgICAgICAgW1Byb2dyYW0gZmlsZV0gW2FyZ3NdCiAgICAgICAgG1szM20odGlwcyEpG1swbSBQbGVhc2UgZW50ZXIgdGhlIBtbMzJtaGVscBtbMG0gY29tbWFuZCB0byBnZXQgbW9yZSBpbnN0cnVjdGlvbnMhCg==").unwrap()).unwrap());
     let args: Vec<String> = env::args().collect();
     if args.len() == 1{
     //_file(asc.to_string(), "TIMING.txt".to_string()); 
+    }else if args[1] == "help".to_string(){
+        println!("{}",String::from_utf8(decode("CiAgICBVc2FnZToKICAgICAgICBbdGhlIHByb2dyYW1dIFt0aGUgZmlyc3Qgc3RyaW5nc10gW3RoZSBzZWNvbmQgc3RyaW5nc10KICAgIA==").unwrap()).unwrap())
     }else{
         let startTime = Instant::now();
-        let func_ = _SAFE_EQU("PASSWORLD".to_string(), args[1].to_string());
+        let func_ = _SAFE_EQU(args[1].to_string(), args[2].to_string());
         let overTime = Instant::now();
         let time = overTime - startTime;
-        println!("{:?}, Time:{}",func_,time.as_nanos());
-        let asc = format!("{}\n", time.as_nanos());
+        println!("{:?}, Time:{}",func_,time.as_nanos());_file(format!("{}\n",time.as_nanos()), "TIME.log".to_string());_file(format!("{}\n", func_), "RESULT.log".to_string());
     }
     
 }
