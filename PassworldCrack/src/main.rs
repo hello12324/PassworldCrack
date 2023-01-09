@@ -29,19 +29,14 @@ illustrate
 //Called module
 use rand::{thread_rng, Rng}; //随机模块,需要安装 random module, Need to install.
 use std::{  //基本模块 default module
-    //time::Duration, //时间函数，用于计时 
+    time::Duration, //时间函数，用于计时.  
     thread, //进程模块,用于关闭程序,多进程等. Thread module
-    time, //时间模块. time module 
     fs::*, //文件操作模块. file operation module
-    fs,//文件操作模块. file operation module
     io,//I/O读取操作模块,用于输入输出等操作. input/output module
     io::Write, //I/O 文件写入函数调用. file io write module
-    env, //env模块,用于接受环境的数据参数等. accept environmental data
-    env::args, //接受命令行参数. Accept command parameters.
+    //env, //env模块,用于接受环境的数据参数等. accept environmental data
+    env::*, //接受命令行参数. Accept command parameters.
     io::ErrorKind, //错误,如果执行程序报错时使用它接收错误. catch error.
-    time::{ //时间模块,调用了一个函数. time module.
-        Instant
-    }
 };
 //hash加密. hash encoding.
 use crypto::{
@@ -106,7 +101,7 @@ fn passworldTEST(pasphrase: String, Enum: String) -> bool
 //Write to the file, append if the file already exists.
 fn _file(contents: String,FNP: String)
 {
-    let current_dir = env::current_dir().unwrap();
+    let current_dir = current_dir().unwrap();
     //write(current_dir.join(FNP), contents);
     let mut file = OpenOptions::new()
         .create(true)
@@ -122,9 +117,9 @@ fn _file(contents: String,FNP: String)
 //Read the file, if the user has customized his own character file, he can use this function to call.
 fn read_fileF(Default_: String,FP: String) -> Result<String, std::io::Error> 
 {
-    let current_dir_1 = env::current_dir().unwrap();
+    let current_dir_1 = current_dir().unwrap();
     let current_file = current_dir_1.join(Default_);
-    let content = fs::read_to_string(FP.trim());
+    let content = read_to_string(FP.trim());
     match content
     {
         Ok(t) => {
@@ -145,7 +140,7 @@ fn read_fileF(Default_: String,FP: String) -> Result<String, std::io::Error>
 fn _func(time_Sleep: u64, FNP: String, count_1: i32, _PASSWORLD_1: String)
 {
     let _PASSWORLD = &_PASSWORLD_1.trim();
-    let time_sleep = time::Duration::from_millis(time_Sleep);
+    let time_sleep = Duration::from_millis(time_Sleep);
     //let strings = format!("{}{}","abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_-+~`|\\{\\}[]:;'<,>.?/",'"');
     let strings = read_fileF("DefaultPassworld.txt".to_string(),FNP.to_string()).expect("[\x1b[41m:(\x1b[0m] '\x1b[34mDefaultPassworld.txt\x1b[0m' file is NotFound, please create this file on program dir path and add content 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_-+~`|\\{//}[]:;'<,>.?/'{}' or add your want add custom content[没有找到'\x1b[34mDefaultPassworld.txt\x1b[0m',请手动创建文件到程序的目录下并添加内容'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_-+~`|\\{//}[]:;'<,>.?/'{}'或者添加自定义内容] [\x1b[42m:)\x1b[0m]  ");
     println!("[\x1b[32m:)\x1b[0m] file content is {}",strings);
@@ -155,7 +150,7 @@ fn _func(time_Sleep: u64, FNP: String, count_1: i32, _PASSWORLD_1: String)
         length_ += 1;
     }
     println!("[\x1b[32m:)\x1b[0m] string length is \x1b[32m {}\x1b[0m bytes",length_);
-    thread::sleep(time::Duration::from_millis(1000));
+    thread::sleep(Duration::from_millis(1000));
     //println!("{}", strings);
     let mut num = 0;
     for i0 in 1..=count_1
@@ -922,7 +917,7 @@ fn main() {
             time_.truncate(time_.len()-1);
             let num: Result<i64, _> = time_.trim().parse();
             let num_ = num.unwrap_or(-1);
-            println!("[\x1b[32m:)\x1b[0m] custom file[自定义文件]");
+            println!("[\x1b[32m:)\x1b[0m] Custom character file location (default./DefaultPassworld.txt), if you don't want to change, please skip.[自定义字符文件位置(默认./DefaultPassworld.txt),如果你不想更改请越过.]");
             let mut FNP_C = String::new();
             io::stdin().read_line(&mut FNP_C).expect("[\x1b[41m:(\x1b[0m]FAILED");
             FNP_C.truncate(FNP_C.len()-1);
@@ -933,9 +928,9 @@ fn main() {
             let mut PA_1 = read_fileF("passworld.txt".to_string(),PA_.to_string()).expect("[\x1b[41m:(\x1b[0m] '\x1b[34m Please guide the file correctly, such as '/path/path1/pass.txt', enter the full path or change the file to 'passworld.txt' and put it in the same path as the program, or in the terminal path!] 请正确引导文件,例如'/path/path1/pass.txt'这个输入全路径或者将文件更改为'passworld.txt'然后放在和程序同一路径下,或者终端路径下! [\x1b[42m:)\x1b[0m]  ");
                 if num_ == -1 {
                     if num_2_p == -1{
-                        _func(0,FNP_C,20, PA_1);
+                        _func(400,FNP_C,20, PA_1);
                     }else{
-                        _func(0,FNP_C,num_2_p.try_into().unwrap(),PA_1);
+                        _func(400,FNP_C,num_2_p.try_into().unwrap(),PA_1);
                     }
                 }else{
                     if num_2_p == -1{
@@ -954,15 +949,41 @@ fn main() {
                 return;
             }
     }else if args.len() > 1{
+        //fn _func(time_Sleep: u64, FNP: String, count_1: i32, _PASSWORLD_1: String)
         for (i, arg) in args.iter().enumerate() 
         {
+            if arg == &"--delay"||arg == &"d"{
+                let num: Result<i64, _> = args[i+1].clone().trim().parse();
+                let num_ = num.unwrap_or(-1);
+                _func(num_.try_into().unwrap(), "".to_string(), 8, "".to_string());
+            }
+            if arg == &"--length"||arg == &"len"{
+                let num: Result<i64, _> = args[i+1].clone().trim().parse();
+                let num_ = num.unwrap_or(-1);
+                _func(400, "".to_string(), num_.try_into().unwrap(), "".to_string());
+            }
+            if arg == &"--FilePath"||arg == &"--FP"||arg ==&"file_path"{
+                _func(400, args[i+1].clone(), 8, "".to_string());
+            }
+            if arg == &"--passworld"||arg == &"pass"{
+                _func(400, "".to_string(), 0,args[i+1].clone());
+            }
+            /* 
+            if arg == &"--passworld"||arg == &"pass" && arg == &"--FilePath"||arg == &"--FP"||arg ==&"file_path" && arg == &"--length"||arg == &"len" && arg == &"--delay"||arg == &"d"{
+                func_();
+            }
+            */
+            if arg == &"--version"||arg == &"v"{
+                println!("{}",String::from_utf8(decode("CiAgICAbWzMzbShWZXJzaW9uKRtbMG0KICAgICAgICAgICAgICAgIE5vIGZ1Y2tpbmcgVmVyc2lvbhtbNDFtOikbWzBtLgogICAg").unwrap()).unwrap());
+            }
             if arg == &"--help"||arg == &"h"
             {
-                println!("{}", String::from_utf8(decode("CiAgICBVc2FnZToKICAgICAgICAtLXZlcnNpb24gICAgICAgICAgICAgICAgIERvIHlvdSB3YW50IHRvIHNlZSB0aGUgdmVyc2lvbj8gTXkgcHJvZ3JhbSBkb2VzIG5vdCBoYXZlIHRoZSBjb25jZXB0IG9mIHZlcnNpb24sIGlmIHlvdSB3YW50IHRvIHNlZSBpdCwgcGxlYXNlIHR5cGUgdGhpcyBjb21tYW5kLiAgCiAgICAgICAgLS1oZWxwICBoZWxwICAgICAgICAgICAgICBJZiB5b3UgZnVja2luZyB3YW50IG1vcmUgaGVscCB0eXBlIHRoaXMgZ2V0IGNvbW1hbmQgYXJndW1lbnRzLgogICAgICAgIC0tZGVseSAgZCAgICAgICAgICAgICAgICAgVG9vIGZhc3Q/IFdhbnQgc29tZXRoaW5nIGEgbGl0dGxlIHNhZmVyPyBUaGVuIHRyYWRlIHNvbWUgcGVyZm9ybWFuY2UgZm9yIHNhZmV0eT8gU2V0IHRoZSBkZWxheS4KICAgICAgICAtLWxlbmd0aCBsZW4gICAgICAgICAgICAgIFdoYXQ/IERvIHlvdSB0aGluayB0aGUgcGFzc3dvcmQgaXMgdG9vIGxvbmc/IFRoZW4gc2V0IHRoaXMhCiAgICAgICAgLS1GaWxlUGF0aChGUCkgZmlsZV9wYXRoICBEbyB5b3UgdGhpbmsgaXQgaXMgc2xvdz8gVGhlbiBjcmVhdGUgYSBmaWxlIHRvIHNldCBjb21tb25seSB1c2VkIGNoYXJhY3RlcnMhCiAgICA=").unwrap()).unwrap());
+                println!("{}", String::from_utf8(decode("CiAgICBVc2FnZToKICAgICAgICAtLXZlcnNpb24gICAgICAgICAgICAgICAgIERvIHlvdSB3YW50IHRvIHNlZSB0aGUgdmVyc2lvbj8gTXkgcHJvZ3JhbSBkb2VzIG5vdCBoYXZlIHRoZSBjb25jZXB0IG9mIHZlcnNpb24sIGlmIHlvdSB3YW50IHRvIHNlZSBpdCwgcGxlYXNlIHR5cGUgdGhpcyBjb21tYW5kLiAgCiAgICAgICAgLS1oZWxwICBoICAgICAgICAgICAgICAgICBJZiB5b3UgZnVja2luZyB3YW50IG1vcmUgaGVscCB0eXBlIHRoaXMgZ2V0IGNvbW1hbmQgYXJndW1lbnRzLgogICAgICAgIC0tZGVsYXkgIGQgICAgICAgICAgICAgICAgVG9vIGZhc3Q/IFdhbnQgc29tZXRoaW5nIGEgbGl0dGxlIHNhZmVyPyBUaGVuIHRyYWRlIHNvbWUgcGVyZm9ybWFuY2UgZm9yIHNhZmV0eT8gU2V0IHRoZSBkZWxheS4KICAgICAgICAtLWxlbmd0aCBsZW4gICAgICAgICAgICAgIFdoYXQ/IERvIHlvdSB0aGluayB0aGUgcGFzc3dvcmQgaXMgdG9vIGxvbmc/IFRoZW4gc2V0IHRoaXMhCiAgICAgICAgLS1GaWxlUGF0aChGUCkgZmlsZV9wYXRoICBEbyB5b3UgdGhpbmsgaXQgaXMgc2xvdz8gVGhlbiBjcmVhdGUgYSBmaWxlIHRvIHNldCBjb21tb25seSB1c2VkIGNoYXJhY3RlcnMhCiAgICAgICAgLS1wYXNzd29ybGQgcGFzcyAgICAgICAgICB0aGUgcGFzc3dvcmxkIGZpbGUoZGVmYXVsdCBmaWxlIGlzIGN1cnJlbnQgcGF0aCAncGFzc3dvcmxkLnR4dCcpCiAgICA=").unwrap()).unwrap());
                 std::process::exit(0);
             }
             if arg == &"--test"||arg == &"t"
             {
+                let a = Duration::from_millis(400);
                 println!("{:?}", args[i+1].clone());
             }
         }

@@ -42,19 +42,26 @@ def base_transformation():
     command = """
     Usage:
         --version                 Do you want to see the version? My program does not have the concept of version, if you want to see it, please type this command.  
-        --help  help              If you fucking want more help type this get command arguments.
-        --dely  d                 Too fast? Want something a little safer? Then trade some performance for safety? Set the delay.
+        --help  h                 If you fucking want more help type this get command arguments.
+        --delay  d                Too fast? Want something a little safer? Then trade some performance for safety? Set the delay.
         --length len              What? Do you think the password is too long? Then set this!
         --FilePath(FP) file_path  Do you think it is slow? Then create a file to set commonly used characters!
+        --passworld pass          the passworld file(default file is current path 'passworld.txt')
+    """
+    version = """
+    \x1b[33m(Version)\x1b[0m
+                No fucking Version\x1b[41m:)\x1b[0m.
     """
     logoL = []
     logoL.append(logo)
     logoL.append(logo1)
     logoL.append(logo2)
     logoL.append(other)
+    logoL.append(command)
+    logoL.append(version)
+
     for i in logoL:
-        encode = base64.encodebytes(bytes(command.encode()))
-        print(encode)
+        [print(i0)for i0 in str(base64.encodebytes(bytes(i.encode()))).split("\\n")]
 
 def genACSII(x, y):
     for i in range(x):
@@ -78,5 +85,6 @@ def TimingAttack():
         print(num/lines_);
 
 if __name__ == "__main__":
-    hash_gen(bytes(input().encode()));
+    #hash_gen(bytes(input().encode()));
+    base_transformation()
     pass;
