@@ -37,11 +37,17 @@ use std::{  //基本模块 default module
     //env, //env模块,用于接受环境的数据参数等. accept environmental data
     env::*, //接受命令行参数. Accept command parameters.
     io::ErrorKind, //错误,如果执行程序报错时使用它接收错误. catch error.
+    sync::{
+        mpsc,
+        Arc,
+        Mutex
+    },
 };
-//hash加密. hash encoding.
+//hash加密和md5加密. hash encoding and md5 encoding.
 use crypto::{
     sha2::Sha256,
-    digest::Digest
+    digest::Digest,
+    md5::Md5 
 };
 use base64::{ //base64加密,只是用于将base code of logo解析 base64 encoding, just only decoding logo strings.
     encode,
@@ -50,17 +56,26 @@ use base64::{ //base64加密,只是用于将base code of logo解析 base64 encod
 //第三方时间模块,用于记录密码成功的时间. A third-party module, used to save the successful password record time
 use chrono::{DateTime, Local, TimeZone};
 
+use futures::executor::block_on;
 //内部的代码可能稍微有点不是很人性化:).
 //The internal code may be a bit impersonal :).
 
 
-// hash加密,之后用于hash的密码解密.
-fn hash_encryt(hash_value: String) -> String
+// hash加密函数  the hash encoding function.
+fn hash_encryt_256(hash_value: String) -> String
 {
     let mut hasher = Sha256::new();
     let _content = String::from(hash_value);
     hasher.input_str(&_content);
     return hasher.result_str()
+}
+// the md5 encoding function.
+fn md5_encryt(md5_value: String) -> String
+{
+    let mut md_5 = Md5::new();
+    let _content = String::from(md5_value);
+    md_5.input_str(&_content);
+    return md_5.result_str()
 }
 
 //输出的规格,用于测试密码的输出和规格. 当然函数如果密码输入成功的话就会保存.
@@ -72,16 +87,16 @@ fn output_style(_passworld: String, _time_sleep: Duration, PASSWORLD: String)
     let _1passworld = _passworld.clone();
     let mut rng = thread_rng();
     let a = rng.gen_range(31, 37);
-    print!("[\x1b[32m:)\x1b[0m \x1b[34mTEST OUTPUT\x1b[0m] [\x1b[{fuck}m{}\x1b[0m] -> [\x1b[{fuck}m{hash_1}\x1b[0m]\r",_passworld,fuck=a,hash_1 = hash_encryt(_passworld.clone()));thread::sleep(_time_sleep);
-    let passworld_ = passworldTEST(PASSWORLD, _passworld);
+    print!("[\x1b[32m:)\x1b[0m \x1b[34mTEST OUTPUT\x1b[0m] [\x1b[{fuck}m{}\x1b[0m] -> [\x1b[{fuck}m{hash_1}\x1b[0m]\r\r",_passworld,fuck=a,hash_1 = hash_encryt_256(_passworld.clone()));thread::sleep(_time_sleep);
+    let passworld_ = passworldTEST(PASSWORLD, _passworld,"sha256".to_string());
     if passworld_ == true{
-        println!("[\x1b[32m:)\x1b[0m]Passworld Success, Passworld is \x1b[34m{}\x1b[0m and hash value is \x1b[34m{hash_2}\x1b[0m", &_1passworld, hash_2 = hash_encryt(_1passworld.clone()));
+        println!("[\x1b[32m:)\x1b[0m]Passworld Success, Passworld is \x1b[34m{}\x1b[0m and value is \x1b[34m{hash_2}\x1b[0m", &_1passworld, hash_2 = hash_encryt_256(_1passworld.clone()));
         let save = format!("
                 [{}]
-        [PASSWORLD]  |  [HASH_VALUE]
+        [PASSWORLD]  |  [VALUE]
             {}               {}
         
-        ", formatted, _1passworld, hash_encryt(_1passworld.clone()));
+        ", formatted, _1passworld, hash_encryt_256(_1passworld.clone()));
         _file(save.to_string(), "PASSWORLD_SUCCESS.txt".to_string());
         std::process::exit(0);
     }
@@ -89,12 +104,22 @@ fn output_style(_passworld: String, _time_sleep: Duration, PASSWORLD: String)
 
 //密码匹配机制,如果你觉得有点小题大作了的话可以完全修改,实际上不需要pass变量保存成功失败变量去匹配,可以直接使用if语句去匹配两个值的相同性.
 //Password matching mechanism, if you think it’s a bit of a fuss, you can completely modify it. In fact, you don’t need the pass variable to save the success or failure variable to match. You can directly use the if statement to match the identity of the two values.
-fn passworldTEST(pasphrase: String, Enum: String) -> bool
-{
-    if hash_encryt(Enum) == (pasphrase) {
-        return true;
-    }else{
-        return false;
+fn passworldTEST(pasphrase: String, Enum: String, passworld_style: String) -> bool
+{ 
+    if (passworld_style) == "sha256".to_string() {
+        if hash_encryt_256(Enum) == (pasphrase) {
+            return true;
+        }else{
+            return false;
+        }
+    }else if (passworld_style) == "md5".to_string() {
+        if md5_encryt(Enum) == (pasphrase) {
+            return true
+        }else{
+            return false
+        }
+    }else {
+        return false
     }
 } 
 //文件写入,如果文件已存在就追加写入.
@@ -119,7 +144,7 @@ fn read_fileF(Default_: String,FP: String) -> Result<String, std::io::Error>
 {
     let current_dir_1 = current_dir().unwrap();
     let current_file = current_dir_1.join(Default_);
-    let content = read_to_string(FP.trim());
+    let content = read_to_string(FP);
     match content
     {
         Ok(t) => {
@@ -911,7 +936,7 @@ fn main() {
             count_2.truncate(count_2.len()-1);
             let num_2: Result<i64, _> = count_2.trim().parse();
             let num_2_p = num_2.unwrap_or(-1);
-            println!("[\x1b[32m:)\x1b[0m] Delay(default 400)[延迟, 默认为400ms]");
+            println!("[\x1b[32m:)\x1b[0m] Delay(default 20ms)[延迟, 默认为20ms]");
             let mut time_ = String::new();
             io::stdin().read_line(&mut time_).expect("[\x1b[41m:(\x1b[0m]Failed");
             time_.truncate(time_.len()-1);
@@ -921,16 +946,16 @@ fn main() {
             let mut FNP_C = String::new();
             io::stdin().read_line(&mut FNP_C).expect("[\x1b[41m:(\x1b[0m]FAILED");
             FNP_C.truncate(FNP_C.len()-1);
-            println!("[\x1b[32m:)\x1b[0m] Please Input HashPassworld(sha256) File Path, Default file name is a 'passworld.txt'[请输入hash密码文件(sha256类型)路径,默认'passworld.txt']");
+            println!("[\x1b[32m:)\x1b[0m] Please Input HashPassworld(sha256)or MD5 File Path, Default file name is a 'passworld.txt'[请输入hash密码文件(sha256类型)或者MD5文件路径,默认'passworld.txt']");
             let mut PA_ = String::new();
             io::stdin().read_line(&mut PA_).expect("[\x1b[41m:(\x1b[0m]FAILED Please Input Passw0rld!");
             PA_.truncate(PA_.len()-1);
             let mut PA_1 = read_fileF("passworld.txt".to_string(),PA_.to_string()).expect("[\x1b[41m:(\x1b[0m] '\x1b[34m Please guide the file correctly, such as '/path/path1/pass.txt', enter the full path or change the file to 'passworld.txt' and put it in the same path as the program, or in the terminal path!] 请正确引导文件,例如'/path/path1/pass.txt'这个输入全路径或者将文件更改为'passworld.txt'然后放在和程序同一路径下,或者终端路径下! [\x1b[42m:)\x1b[0m]  ");
                 if num_ == -1 {
                     if num_2_p == -1{
-                        _func(400,FNP_C,20, PA_1);
+                        _func(20,FNP_C,20, PA_1);
                     }else{
-                        _func(400,FNP_C,num_2_p.try_into().unwrap(),PA_1);
+                        _func(20,FNP_C,num_2_p.try_into().unwrap(),PA_1);
                     }
                 }else{
                     if num_2_p == -1{
@@ -960,13 +985,13 @@ fn main() {
             if arg == &"--length"||arg == &"len"{
                 let num: Result<i64, _> = args[i+1].clone().trim().parse();
                 let num_ = num.unwrap_or(-1);
-                _func(400, "".to_string(), num_.try_into().unwrap(), "".to_string());
+                _func(20, "".to_string(), num_.try_into().unwrap(), "".to_string());
             }
             if arg == &"--FilePath"||arg == &"--FP"||arg ==&"file_path"{
-                _func(400, args[i+1].clone(), 8, "".to_string());
+                _func(20, args[i+1].clone(), 8, "".to_string());
             }
             if arg == &"--passworld"||arg == &"pass"{
-                _func(400, "".to_string(), 0,args[i+1].clone());
+                _func(20, "".to_string(), 0,args[i+1].clone());
             }
             /* 
             if arg == &"--passworld"||arg == &"pass" && arg == &"--FilePath"||arg == &"--FP"||arg ==&"file_path" && arg == &"--length"||arg == &"len" && arg == &"--delay"||arg == &"d"{

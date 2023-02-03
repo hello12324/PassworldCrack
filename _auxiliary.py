@@ -92,6 +92,6 @@ def TimingAttack():
         print(num/lines_);
 
 if __name__ == "__main__":
-    #hash_gen(bytes(input().encode()));
-    base_transformation()
+    hash_gen(bytes(input().encode()));
+    #base_transformation()
     pass;
